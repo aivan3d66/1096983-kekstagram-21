@@ -1,8 +1,12 @@
 'use strict';
 
-const OBJECT_COUNT = 25;
+const PICTURES_COUNT = 25;
 const COMMENTS = [`Всё отлично!`, `В целом всё неплохо. Но не всё.`, `Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.`, `Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.`];
 const NAMES = [`Иван`, `Хуан Себастьян`, `Мария`, `Кристоф`, `Виктор`, `Юлия`, `Люпита`, `Вашингтон`];
+const LIKES_START = 15;
+const LIKES_END = 200;
+const COMMENTS_START = 1;
+const COMMENTS_END = 6;
 
 const getRandomNumber = function (min, max) {
   min = Math.ceil(min);
@@ -10,53 +14,54 @@ const getRandomNumber = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-const getRandomData = function (items) {
-  let randomIndex = Math.floor(Math.random() * items.length);
-  let randomValue = items[randomIndex];
+const getRandomArrayElement = function (items) {
+  const randomIndex = Math.floor(Math.random() * items.length);
+  const randomValue = items[randomIndex];
   return randomValue;
 };
 
-const createDescription = function () {
-  let descriptionData = [];
-  for (let i = 0; i < OBJECT_COUNT; i++) {
-    descriptionData.push({
-      url: `photos/` + getRandomNumber(1, 25) + `.jpg`,
+const createPictures = function (count) {
+  const pictures = [];
+  for (let i = 0; i < count; i++) {
+    pictures.push({
+      url: `photos/` + (i + 1) + `.jpg`,
       description: `Описание фотографии`,
-      likes: getRandomNumber(15, 200),
+      likes: getRandomNumber(LIKES_START, LIKES_END),
       comments: createComments()
     });
   }
-  return descriptionData;
+  return pictures;
 };
 
 const createComments = function () {
-  let commentsMassive = [];
-  for (let i = 0; i < 1; i++) {
-    commentsMassive.push({
-      avatar: `img/avatar-` + getRandomNumber(1, 6) + `.svg`,
-      message: getRandomData(COMMENTS),
-      name: getRandomData(NAMES)
+  const comments = [];
+  const commentsCount = getRandomNumber(COMMENTS_START, COMMENTS_END);
+  for (let i = 0; i < commentsCount; i++) {
+    comments.push({
+      avatar: `img/avatar-` + commentsCount + `.svg`,
+      message: getRandomArrayElement(COMMENTS),
+      name: getRandomArrayElement(NAMES)
     });
   }
-  return createComments;
+  return comments;
 };
 
 const picturesBlock = document.querySelector(`.pictures`);
 const templatePicturesBlock = document.querySelector(`#picture`).content;
 
-const createTemplatePicture = function (descriptionData) {
-  let templatePicture = templatePicturesBlock.cloneNode(true);
-  templatePicture.querySelector(`img`).src = descriptionData.url;
-  templatePicture.querySelector(`.picture__likes`).textContent = descriptionData.likes;
-  templatePicture.querySelector(`.picture__comments`).textContent = descriptionData.comments;
+const createTemplatePicture = function (pictureData) {
+  const templatePicture = templatePicturesBlock.cloneNode(true);
+  templatePicture.querySelector(`img`).src = pictureData.url;
+  templatePicture.querySelector(`.picture__likes`).textContent = pictureData.likes;
+  templatePicture.querySelector(`.picture__comments`).textContent = pictureData.comments.length;
   return templatePicture;
 };
 
 const renderPicture = function () {
-  let pictureItem = createDescription();
-  let fragment = document.createDocumentFragment();
-  for (let i = 0; i < pictureItem.length; i++) {
-    fragment.appendChild(createTemplatePicture(pictureItem[i]));
+  const pictures = createPictures(PICTURES_COUNT);
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < pictures.length; i++) {
+    fragment.appendChild(createTemplatePicture(pictures[i]));
     picturesBlock.appendChild(fragment);
   }
 };
