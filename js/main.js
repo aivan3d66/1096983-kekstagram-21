@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  window.generateMockData();
-  window.initPictures();
+  const pictures = window.dataGeneration();
+  window.galleryInit(pictures);
   window.picture.init();
   window.slider.setValue();
 })();

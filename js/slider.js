@@ -8,7 +8,7 @@
   const effectLevelPin = sliderNode.querySelector(`.effect-level__pin`);
   const effectLevelDepth = sliderNode.querySelector(`.effect-level__depth`);
 
-  const sliderMouseDownHandler = (callback) => {
+  const sliderMouseDownHandler = () => {
     const sliderMouseMoveHandler = (evt) => {
       const movementX = effectLevelPin.offsetLeft + evt.movementX;
       let result = movementX / effectLevelLine.offsetWidth * TOTAL_WIDTH;
@@ -23,7 +23,7 @@
       effectLevelDepth.style.width = `${result}%`;
       effectLevelValue.value = Math.floor(result);
 
-      callback(Math.floor(result));
+      window.filters.changeEffect(Math.floor(result));
     };
 
     const sliderMouseUpHandler = () => {
@@ -40,6 +40,8 @@
     effectLevelDepth.style.width = `${value}%`;
     effectLevelValue.value = value;
   }
+
+  effectLevelPin.addEventListener(`mousedown`, sliderMouseDownHandler);
 
   window.slider = {
     node: sliderNode,

@@ -11,6 +11,7 @@
 
   function previewEscKeydownHandler(evt) {
     if (window.isEscButton(evt.key) && document.activeElement !== textHashtags && document.activeElement !== comment) {
+      window.validation.textHashtagInput.value = ``;
       closeEditForm();
     }
   }

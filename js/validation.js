@@ -47,6 +47,7 @@
   };
 
   window.validation = {
+    textHashtagInput: textHashtags,
     textHashtag: onTextHashtagsInput,
     formSubmit: onUploadFormSubmit
   };
