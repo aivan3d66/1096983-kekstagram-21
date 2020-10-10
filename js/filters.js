@@ -41,7 +41,7 @@
   };
   let currentEffectName = `none`;
 
-  function changeEffectValue(value) {
+  const changeEffectValue = function (value) {
     if (currentEffectName !== `none`) {
       const currentEffectParameters = effectsParameters[currentEffectName];
       const currentEffectValue = (currentEffectParameters.max - currentEffectParameters.min) / 100 * value + currentEffectParameters.min;
@@ -49,9 +49,9 @@
 
       window.preview.img.style.filter = resultEffectFilter;
     }
-  }
+  };
 
-  function changeEffectName(effectName = `none`) {
+  const changeEffectName = function (effectName = `none`) {
     currentEffectName = effectName;
 
     window.preview.img.style.removeProperty(`filter`);
@@ -60,7 +60,7 @@
 
     const method = effectName !== `none` ? `remove` : `add`;
     window.slider.node.classList[method](`hidden`);
-  }
+  };
 
   effectsListNode.addEventListener(`click`, (evt) => {
     const effectName = evt.target.classList.contains(`effects__radio`) ? evt.target.value : null;
@@ -69,7 +69,7 @@
     }
   });
 
-  window.slider.pin.addEventListener(`mousedown`, () => {
-    window.slider.handler(changeEffectValue);
-  });
+  window.filters = {
+    changeEffect: changeEffectValue
+  };
 })();

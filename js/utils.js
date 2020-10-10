@@ -10,20 +10,20 @@
 
   window.isEnterButton = (key) => key === KeyboardKeys.ENTER;
 
-  const getRandomArrayNumber = function (min, max) {
+  const getRandomNumber = function (min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  const getRandomArrayElement = function (items) {
+  const getRandomElement = function (items) {
     const randomIndex = Math.floor(Math.random() * items.length);
     const randomValue = items[randomIndex];
     return randomValue;
   };
 
   window.utils = {
-    randomArrayNumber: getRandomArrayNumber,
-    randomArrayElement: getRandomArrayElement,
+    randomNumber: getRandomNumber,
+    randomElement: getRandomElement,
   };
 })();

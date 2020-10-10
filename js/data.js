@@ -19,8 +19,8 @@
     for (let i = 0; i < number; i++) {
       pictures.push({
         url: `photos/${i + 1}.jpg`,
-        description: window.utils.randomArrayElement(mockDataObj.description),
-        likes: window.utils.randomArrayNumber(LIKES_START, LIKES_END),
+        description: window.utils.randomElement(mockDataObj.description),
+        likes: window.utils.randomNumber(LIKES_START, LIKES_END),
         comments: createComments()
       });
     }
@@ -28,19 +28,19 @@
   };
 
   const createComments = function () {
-    const commentsArr = [];
-    const commentsCount = window.utils.randomArrayNumber(COMMENTS_START, COMMENTS_END);
+    const comments = [];
+    const commentsCount = window.utils.randomNumber(COMMENTS_START, COMMENTS_END);
     for (let i = 0; i < commentsCount; i++) {
-      commentsArr.push({
-        avatar: `img/avatar-${window.utils.randomArrayNumber(COMMENTS_START, COMMENTS_END)}.svg`,
-        message: window.utils.randomArrayElement(mockDataObj.message),
-        name: window.utils.randomArrayElement(mockDataObj.name)
+      comments.push({
+        avatar: `img/avatar-${window.utils.randomNumber(COMMENTS_START, COMMENTS_END)}.svg`,
+        message: window.utils.randomElement(mockDataObj.message),
+        name: window.utils.randomElement(mockDataObj.name)
       });
     }
-    return commentsArr;
+    return comments;
   };
 
-  window.generateMockData = (number = PICTURES_COUNT) => {
-    window.picturesArr = createPictures(number);
+  window.dataGeneration = (number = PICTURES_COUNT) => {
+    window.pictures = createPictures(number);
   };
 })();

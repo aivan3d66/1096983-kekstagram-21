@@ -23,17 +23,17 @@
     return Array.from(picturesNodeList).indexOf(picture);
   }
 
-  window.initPictures = () => {
-    const picturesHtmlFragment = getHtmlPicturesFragment(window.picturesArr);
-    picturesBlock.appendChild(picturesHtmlFragment);
-  };
-
   picturesBlock.addEventListener(`click`, (evt) => {
     const chosenPictureNode = evt.target.closest(`.picture`);
     if (chosenPictureNode) {
       const chosenPictureIndex = indexOfPicture(chosenPictureNode);
-      window.picture.render(window.picturesArr[chosenPictureIndex]);
+      window.picture.render(window.pictures[chosenPictureIndex]);
       window.picture.open();
     }
   });
+
+  window.galleryInit = () => {
+    const picturesHtmlFragment = getHtmlPicturesFragment(window.pictures);
+    picturesBlock.appendChild(picturesHtmlFragment);
+  };
 })();
