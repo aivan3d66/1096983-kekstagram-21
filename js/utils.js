@@ -23,7 +23,7 @@
   };
 
   window.utils = {
-    randomNumber: getRandomNumber,
-    randomElement: getRandomElement,
+    getRandomNumber,
+    getRandomElement
   };
 })();

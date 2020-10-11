@@ -19,8 +19,8 @@
     for (let i = 0; i < number; i++) {
       pictures.push({
         url: `photos/${i + 1}.jpg`,
-        description: window.utils.randomElement(mockDataObj.description),
-        likes: window.utils.randomNumber(LIKES_START, LIKES_END),
+        description: window.utils.getRandomElement(mockDataObj.description),
+        likes: window.utils.getRandomNumber(LIKES_START, LIKES_END),
         comments: createComments()
       });
     }
@@ -29,12 +29,12 @@
 
   const createComments = function () {
     const comments = [];
-    const commentsCount = window.utils.randomNumber(COMMENTS_START, COMMENTS_END);
+    const commentsCount = window.utils.getRandomNumber(COMMENTS_START, COMMENTS_END);
     for (let i = 0; i < commentsCount; i++) {
       comments.push({
-        avatar: `img/avatar-${window.utils.randomNumber(COMMENTS_START, COMMENTS_END)}.svg`,
-        message: window.utils.randomElement(mockDataObj.message),
-        name: window.utils.randomElement(mockDataObj.name)
+        avatar: `img/avatar-${window.utils.getRandomNumber(COMMENTS_START, COMMENTS_END)}.svg`,
+        message: window.utils.getRandomElement(mockDataObj.message),
+        name: window.utils.getRandomElement(mockDataObj.name)
       });
     }
     return comments;

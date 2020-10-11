@@ -18,7 +18,7 @@
     return fragment;
   }
 
-  function indexOfPicture(picture) {
+  function getIndexOfPicture(picture) {
     const picturesNodeList = picturesBlock.querySelectorAll(`.picture`);
     return Array.from(picturesNodeList).indexOf(picture);
   }
@@ -26,7 +26,7 @@
   picturesBlock.addEventListener(`click`, (evt) => {
     const chosenPictureNode = evt.target.closest(`.picture`);
     if (chosenPictureNode) {
-      const chosenPictureIndex = indexOfPicture(chosenPictureNode);
+      const chosenPictureIndex = getIndexOfPicture(chosenPictureNode);
       window.picture.render(window.pictures[chosenPictureIndex]);
       window.picture.open();
     }
