@@ -8,11 +8,11 @@
     const fragment = document.createDocumentFragment();
 
     pictures.forEach((picture) => {
-      const elem = templatePicturesBlock.cloneNode(true);
-      elem.querySelector(`.picture__img`).src = picture.url;
-      elem.querySelector(`.picture__likes`).textContent = picture.likes;
-      elem.querySelector(`.picture__comments`).textContent = picture.comments.length;
-      fragment.appendChild(elem);
+      const templatePicture = templatePicturesBlock.cloneNode(true);
+      templatePicture.querySelector(`.picture__img`).src = picture.url;
+      templatePicture.querySelector(`.picture__likes`).textContent = picture.likes;
+      templatePicture.querySelector(`.picture__comments`).textContent = picture.comments.length;
+      fragment.appendChild(templatePicture);
     });
 
     return fragment;
