@@ -1,44 +1,39 @@
 'use strict';
 
 (function () {
-  const picturesContainerNode = document.querySelector(`.pictures`);
-  const pictureTemplateNode = document.querySelector(`#picture`).content.querySelector(`.picture`);
+  const picturesBlock = document.querySelector(`.pictures`);
+  const templatePicturesBlock = document.querySelector(`#picture`).content.querySelector(`.picture`);
 
-  const getHtmlPicturesFragment = (pictures) => {
+  function getHtmlPicturesFragment(pictures) {
     const fragment = document.createDocumentFragment();
 
     pictures.forEach((picture) => {
-      const elem = pictureTemplateNode.cloneNode(true);
-
+      const elem = templatePicturesBlock.cloneNode(true);
       elem.querySelector(`.picture__img`).src = picture.url;
       elem.querySelector(`.picture__likes`).textContent = picture.likes;
       elem.querySelector(`.picture__comments`).textContent = picture.comments.length;
-
       fragment.appendChild(elem);
     });
 
     return fragment;
-  };
+  }
 
-  const indexOfPicture = (picture) => {
-    const picturesNodeList = picturesContainerNode.querySelectorAll(`.picture`);
+  function getIndexOfPicture(picture) {
+    const picturesNodeList = picturesBlock.querySelectorAll(`.picture`);
     return Array.from(picturesNodeList).indexOf(picture);
-  };
+  }
 
-  picturesContainerNode.addEventListener(`click`, (evt) => {
+  picturesBlock.addEventListener(`click`, (evt) => {
     const chosenPictureNode = evt.target.closest(`.picture`);
     if (chosenPictureNode) {
-      const chosenPictureIndex = indexOfPicture(chosenPictureNode);
-
-      window.picture.render(window.picturesArr[chosenPictureIndex]);
+      const chosenPictureIndex = getIndexOfPicture(chosenPictureNode);
+      window.picture.render(window.pictures[chosenPictureIndex]);
       window.picture.open();
     }
   });
 
-  window.gallery = {
-    init: () => {
-      const picturesHtmlFragment = getHtmlPicturesFragment(window.picturesArr);
-      picturesContainerNode.appendChild(picturesHtmlFragment);
-    }
+  window.galleryIinit = () => {
+    const picturesHtmlFragment = getHtmlPicturesFragment(window.pictures);
+    picturesBlock.appendChild(picturesHtmlFragment);
   };
 })();
