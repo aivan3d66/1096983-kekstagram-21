@@ -2,19 +2,19 @@
 
 (function () {
   const picturesBlock = document.querySelector(`.pictures`);
-  const templatePicturesBlock = document.querySelector(`#picture`).content;
+  const templatePicturesBlock = document.querySelector(`#picture`).content.querySelector(`.picture`);
 
   function getHtmlPicturesFragment(pictures) {
     const fragment = document.createDocumentFragment();
 
     pictures.forEach((picture) => {
       const templatePicture = templatePicturesBlock.cloneNode(true);
-
-      templatePicture.querySelector(`img`).src = picture.url;
+      templatePicture.querySelector(`.picture__img`).src = picture.url;
       templatePicture.querySelector(`.picture__likes`).textContent = picture.likes;
       templatePicture.querySelector(`.picture__comments`).textContent = picture.comments.length;
       fragment.appendChild(templatePicture);
     });
+
     return fragment;
   }
 
@@ -32,7 +32,7 @@
     }
   });
 
-  window.galleryInit = () => {
+  window.galleryIinit = () => {
     const picturesHtmlFragment = getHtmlPicturesFragment(window.pictures);
     picturesBlock.appendChild(picturesHtmlFragment);
   };

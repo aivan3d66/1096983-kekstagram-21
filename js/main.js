@@ -1,8 +1,7 @@
 'use strict';
 
 (function () {
-  const pictures = window.dataGeneration();
-  window.galleryInit(pictures);
+  window.backend.load(window.galleryIinit);
   window.picture.init();
   window.slider.setValue();
 })();
