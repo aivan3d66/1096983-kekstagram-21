@@ -32,7 +32,7 @@
     }
   });
 
-  window.galleryIinit = () => {
+  window.galleryInit = () => {
     const picturesHtmlFragment = getHtmlPicturesFragment(window.pictures);
     picturesBlock.appendChild(picturesHtmlFragment);
   };

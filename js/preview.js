@@ -8,6 +8,7 @@
   const imgPreview = uploadForm.querySelector(`.img-upload__preview img`);
   const textHashtags = uploadForm.querySelector(`.text__hashtags`);
   const comment = uploadForm.querySelector(`.text__description`);
+  const previewForm = document.querySelector(`.img-upload__form`);
 
   function previewEscKeydownHandler(evt) {
     if (window.isEscButton(evt.key) && document.activeElement !== textHashtags && document.activeElement !== comment) {
@@ -59,6 +60,8 @@
   uploadCancel.addEventListener(`click`, closeEditForm);
 
   window.preview = {
+    close: closeEditForm,
+    form: previewForm,
     img: imgPreview,
     hashtagsInput: textHashtags,
     descriptionTextarea: comment
