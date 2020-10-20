@@ -6,9 +6,9 @@
     ENTER: `Enter`
   };
 
-  window.isEscButton = (key) => key === KeyboardKeys.ESC;
+  const isEscButton = (key) => key === KeyboardKeys.ESC;
 
-  window.isEnterButton = (key) => key === KeyboardKeys.ENTER;
+  const isEnterButton = (key) => key === KeyboardKeys.ENTER;
 
   const getRandomNumber = function (min, max) {
     min = Math.ceil(min);
@@ -24,6 +24,8 @@
 
   window.utils = {
     getRandomNumber,
-    getRandomElement
+    getRandomElement,
+    isEscButton,
+    isEnterButton
   };
 })();

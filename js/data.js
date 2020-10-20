@@ -40,7 +40,5 @@
     return comments;
   };
 
-  window.dataGeneration = (number = PICTURES_COUNT) => {
-    window.pictures = createPictures(number);
-  };
+  window.dataGeneration = (number = PICTURES_COUNT) => createPictures(number);
 })();

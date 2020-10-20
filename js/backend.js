@@ -39,8 +39,7 @@
 
       switch (statusFirstNum) {
         case `2`:
-          window.pictures = xhr.response;
-          onSuccess();
+          onSuccess(xhr.response);
           break;
 
         case `4`:

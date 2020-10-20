@@ -13,8 +13,8 @@
       window.preview.close();
       window.backend.upload(
           formData,
-          window.errors.uploadSuccess,
-          window.errors.uploadError
+          window.modal.uploadSuccess,
+          window.modal.uploadError
       );
     } else {
       window.preview.hashtagsInput.classList.add(`invalid-input`);

@@ -42,7 +42,7 @@
     }, 5000);
   };
 
-  const uploadError = (_) => {
+  const uploadError = () => {
     const elem = uploadErrorNode.cloneNode(true);
 
     createMessageModal(elem, `error`);
@@ -54,7 +54,7 @@
     createMessageModal(elem, `success`);
   };
 
-  window.errors = {
+  window.modal = {
     loadError,
     uploadError,
     uploadSuccess

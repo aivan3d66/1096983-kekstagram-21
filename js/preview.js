@@ -11,7 +11,7 @@
   const previewForm = document.querySelector(`.img-upload__form`);
 
   function previewEscKeydownHandler(evt) {
-    if (window.isEscButton(evt.key) && document.activeElement !== textHashtags && document.activeElement !== comment) {
+    if (window.utils.isEscButton(evt.key) && document.activeElement !== textHashtags && document.activeElement !== comment) {
       window.validation.textHashtagInput.value = ``;
       closeEditForm();
     }
