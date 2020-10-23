@@ -23,7 +23,7 @@
   }
 
   function galleryEscKeydownHandler(evt) {
-    if (window.isEscButton(evt.key)) {
+    if (window.utils.isEscButton(evt.key)) {
       closePicture();
     }
   }
