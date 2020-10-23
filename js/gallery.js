@@ -33,6 +33,7 @@
   });
 
   window.galleryInit = (pictures) => {
+    window.pictures = pictures;
     const picturesHtmlFragment = getHtmlPicturesFragment(pictures);
     picturesBlock.appendChild(picturesHtmlFragment);
   };
