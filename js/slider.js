@@ -23,7 +23,7 @@
       effectLevelDepth.style.width = `${result}%`;
       effectLevelValue.value = Math.floor(result);
 
-      window.filters.changeEffect(Math.floor(result));
+      window.effects.change(Math.floor(result));
     };
 
     const sliderMouseUpHandler = () => {
