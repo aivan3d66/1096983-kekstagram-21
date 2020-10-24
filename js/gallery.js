@@ -51,6 +51,7 @@
   window.gallery = {
     init: (pictures) => {
       renderPictures(pictures);
+      window.galleryFiltration = window.pictures.slice();
       imgFilters.classList.remove(`img-filters--inactive`);
     },
     render: renderPictures

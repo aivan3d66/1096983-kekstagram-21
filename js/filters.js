@@ -17,7 +17,7 @@
     },
 
     getDefaultArr: () => {
-      return window.pictures;
+      return window.galleryFiltration;
     }
   };
 
