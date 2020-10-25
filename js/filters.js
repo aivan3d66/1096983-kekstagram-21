@@ -1,75 +1,40 @@
 'use strict';
 
 (function () {
-  const DEFAULT_EFFECT_VALUE = 100;
-  const effectsListNode = document.querySelector(`.effects__list`);
-  const effectsParameters = {
-    chrome: {
-      filter: `grayscale`,
-      min: 0,
-      max: 1,
-      measure: ``
+  const RANDOM_PICTURES_COUNT = 10;
+  const filtersFormNode = document.querySelector(`.img-filters__form`);
+  const filtersFunctions = {
+    default() {
+      return this.getDefaultArr();
     },
 
-    sepia: {
-      filter: `sepia`,
-      min: 0,
-      max: 1,
-      measure: ``
+    random() {
+      return window.utils.getShuffleElements(this.getDefaultArr()).slice(0, RANDOM_PICTURES_COUNT);
     },
 
-    marvin: {
-      filter: `invert`,
-      min: 0,
-      max: 100,
-      measure: `%`
+    discussed() {
+      return this.getDefaultArr().sort((a, b) => b.comments.length === a.comments.length ? b.likes - a.likes : b.comments.length - a.comments.length);
     },
 
-    phobos: {
-      filter: `blur`,
-      min: 0,
-      max: 3,
-      measure: `px`
-    },
-
-    heat: {
-      filter: `brightness`,
-      min: 1,
-      max: 3,
-      measure: ``
-    },
-  };
-  let currentEffectName = `none`;
-
-  const changeEffectValue = function (value) {
-    if (currentEffectName !== `none`) {
-      const currentEffectParameters = effectsParameters[currentEffectName];
-      const currentEffectValue = (currentEffectParameters.max - currentEffectParameters.min) / 100 * value + currentEffectParameters.min;
-      const resultEffectFilter = `${currentEffectParameters.filter}(${currentEffectValue}${currentEffectParameters.measure})`;
-
-      window.preview.img.style.filter = resultEffectFilter;
+    getDefaultArr: () => {
+      return window.galleryFiltration;
     }
   };
 
-  const changeEffectName = function (effectName = `none`) {
-    currentEffectName = effectName;
+  const changeActiveButton = window.utils.debounceDecorator((buttonNode, filterName) => {
+    const currentButton = document.querySelector(`.img-filters__button--active`);
 
-    window.preview.img.style.removeProperty(`filter`);
-    window.slider.setValue(DEFAULT_EFFECT_VALUE);
-    changeEffectValue(DEFAULT_EFFECT_VALUE);
-
-    const method = effectName !== `none` ? `remove` : `add`;
-    window.slider.node.classList[method](`hidden`);
-  };
-
-  effectsListNode.addEventListener(`click`, (evt) => {
-    const effectName = evt.target.classList.contains(`effects__radio`) ? evt.target.value : null;
-    if (effectName) {
-      changeEffectName(effectName);
-    }
+    currentButton.classList.remove(`img-filters__button--active`);
+    window.pictures = filtersFunctions[filterName]();
+    window.gallery.render(window.pictures);
+    buttonNode.classList.add(`img-filters__button--active`);
   });
 
-  window.filters = {
-    changeEffect: changeEffectValue
-  };
+  filtersFormNode.addEventListener(`click`, (evt) => {
+    if (evt.target.classList.contains(`img-filters__button`)) {
+      const filterName = evt.target.id.replace(`filter-`, ``);
+      changeActiveButton(evt.target, filterName);
+    }
+  });
 })();
+
