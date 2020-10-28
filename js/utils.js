@@ -2,6 +2,8 @@
 
 (function () {
   const DEBOUNCE_INTERVAL = 500;
+  const MAX_DIVIDEND = 100;
+  const MIN_DIVIDEND = 10;
   const KeyboardKeys = {
     ESC: `Escape`,
     ENTER: `Enter`
@@ -44,12 +46,18 @@
     return array;
   };
 
+  const getDeclension = (number, titles) => {
+    const cases = [2, 0, 1, 1, 1, 2];
+    return titles[(number % MAX_DIVIDEND > 4 && number % MAX_DIVIDEND < 20) ? 2 : cases[(number % MIN_DIVIDEND < 5) ? number % MIN_DIVIDEND : 5]];
+  };
+
   window.utils = {
     getRandomNumber,
     getRandomElement,
     isEscButton,
     isEnterButton,
     getShuffleElements,
-    debounceDecorator
+    debounceDecorator,
+    getDeclension
   };
 })();
