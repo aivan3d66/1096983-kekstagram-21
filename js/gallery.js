@@ -4,7 +4,7 @@ const picturesBlock = document.querySelector(`.pictures`);
 const templatePicturesBlock = document.querySelector(`#picture`).content.querySelector(`.picture`);
 const imgFilters = document.querySelector(`.img-filters`);
 
-function getHtmlPicturesFragment(pictures) {
+const getHtmlPicturesFragment = function (pictures) {
   const fragment = document.createDocumentFragment();
 
   pictures.forEach((picture) => {
@@ -16,12 +16,12 @@ function getHtmlPicturesFragment(pictures) {
   });
 
   return fragment;
-}
+};
 
-function getIndexOfPicture(picture) {
+const getIndexOfPicture = function (picture) {
   const picturesNodeList = picturesBlock.querySelectorAll(`.picture`);
   return Array.from(picturesNodeList).indexOf(picture);
-}
+};
 
 picturesBlock.addEventListener(`click`, (evt) => {
   const chosenPictureNode = evt.target.closest(`.picture`);

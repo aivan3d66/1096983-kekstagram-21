@@ -9,14 +9,14 @@ const textHashtags = uploadForm.querySelector(`.text__hashtags`);
 const comment = uploadForm.querySelector(`.text__description`);
 const previewForm = document.querySelector(`.img-upload__form`);
 
-function previewEscKeydownHandler(evt) {
+const previewEscKeydownHandler = function (evt) {
   if (window.utils.isEscButton(evt.key) && document.activeElement !== textHashtags && document.activeElement !== comment) {
     window.validation.textHashtagInput.value = ``;
     closeEditForm();
   }
-}
+};
 
-function openEditForm() {
+const openEditForm = function () {
   document.body.classList.add(`modal-open`);
   editForm.classList.remove(`hidden`);
   window.slider.node.classList.add(`hidden`);
@@ -24,9 +24,9 @@ function openEditForm() {
   textHashtags.addEventListener(`input`, window.validation.textHashtag);
   uploadForm.addEventListener(`submit`, window.validation.formSubmit);
   document.addEventListener(`keydown`, previewEscKeydownHandler);
-}
+};
 
-function closeEditForm() {
+const closeEditForm = function () {
   uploadFileInput.value = ``;
   document.body.classList.remove(`modal-open`);
   editForm.classList.add(`hidden`);
@@ -35,7 +35,7 @@ function closeEditForm() {
   textHashtags.removeEventListener(`input`, window.validation.textHashtag);
   uploadForm.removeEventListener(`submit`, window.validation.formSubmit);
   document.removeEventListener(`keydown`, previewEscKeydownHandler);
-}
+};
 
 uploadFileInput.addEventListener(`change`, () => {
   document.body.classList.add(`modal-open`);
