@@ -11,7 +11,7 @@ const previewForm = document.querySelector(`.img-upload__form`);
 
 const previewEscKeydownHandler = function (evt) {
   if (window.utils.isEscButton(evt.key) && document.activeElement !== textHashtags && document.activeElement !== comment) {
-    window.validation.textHashtagInput.value = ``;
+    textHashtags.value = ``;
     closeEditForm();
   }
 };
@@ -21,8 +21,6 @@ const openEditForm = function () {
   editForm.classList.remove(`hidden`);
   window.slider.node.classList.add(`hidden`);
   window.setScaleValue();
-  textHashtags.addEventListener(`input`, window.validation.textHashtag);
-  uploadForm.addEventListener(`submit`, window.validation.formSubmit);
   document.addEventListener(`keydown`, previewEscKeydownHandler);
 };
 
@@ -32,8 +30,6 @@ const closeEditForm = function () {
   editForm.classList.add(`hidden`);
   window.slider.setValue();
   imgPreview.removeAttribute(`style`);
-  textHashtags.removeEventListener(`input`, window.validation.textHashtag);
-  uploadForm.removeEventListener(`submit`, window.validation.formSubmit);
   document.removeEventListener(`keydown`, previewEscKeydownHandler);
 };
 
