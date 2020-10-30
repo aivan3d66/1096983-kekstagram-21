@@ -34,11 +34,11 @@ const sliderMouseDownHandler = () => {
   document.addEventListener(`mouseup`, sliderMouseUpHandler);
 };
 
-function resetSliderValue(value = 0) {
+const resetSliderValue = function (value = 0) {
   effectLevelPin.style.left = `${value}%`;
   effectLevelDepth.style.width = `${value}%`;
   effectLevelValue.value = value;
-}
+};
 
 effectLevelPin.addEventListener(`mousedown`, sliderMouseDownHandler);
 

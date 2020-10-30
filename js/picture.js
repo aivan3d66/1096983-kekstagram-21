@@ -3,37 +3,37 @@
 const bigPictureElement = document.querySelector(`.big-picture`);
 const pictureCloseButton = document.querySelector(`.big-picture__cancel`);
 
-function galleryEscKeydownHandler(evt) {
+const galleryEscKeydownHandler = function (evt) {
   if (window.utils.isEscButton(evt.key)) {
     closePicture();
   }
-}
+};
 
-function renderPicture(picture) {
+const renderPicture = function (picture) {
   bigPictureElement.querySelector(`.big-picture__img`).querySelector(`img`).src = picture.url;
   bigPictureElement.querySelector(`.likes-count`).textContent = picture.likes;
   bigPictureElement.querySelector(`.comments-count`).textContent = picture.comments.length;
   bigPictureElement.querySelector(`.social__caption`).textContent = picture.description;
 
   window.comments.set(picture.comments);
-}
+};
 
-function openPicture() {
+const openPicture = function () {
   document.body.classList.add(`modal-open`);
   bigPictureElement.classList.remove(`hidden`);
   document.addEventListener(`keydown`, galleryEscKeydownHandler);
-}
+};
 
-function closePicture() {
+const closePicture = function () {
   document.body.classList.remove(`modal-open`);
   bigPictureElement.classList.add(`hidden`);
   document.removeEventListener(`keydown`, galleryEscKeydownHandler);
-}
+};
 
-function initPicture() {
+const initPicture = function () {
   bigPictureElement.querySelector(`.social__comment-count`).classList.add(`hidden`);
   bigPictureElement.querySelector(`.comments-loader`).classList.add(`hidden`);
-}
+};
 
 pictureCloseButton.addEventListener(`click`, closePicture);
 

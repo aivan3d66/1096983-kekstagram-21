@@ -11,7 +11,7 @@ const scaleSmaller = scaleNode.querySelector(`.scale__control--smaller`);
 const scaleBigger = scaleNode.querySelector(`.scale__control--bigger`);
 const scaleValue = scaleNode.querySelector(`.scale__control--value`);
 
-function setScaleValue(value = TOTAL_VALUE) {
+const setScaleValue = function (value = TOTAL_VALUE) {
   if (value - SCALE_STEP < MIN_SCALE_VALUE) {
     scaleValue.value = `${MIN_SCALE_VALUE}%`;
     window.preview.img.style.transform = `scale(${MIN_SCALE_VALUE / TOTAL_VALUE})`;
@@ -22,7 +22,7 @@ function setScaleValue(value = TOTAL_VALUE) {
     scaleValue.value = `${value}%`;
     window.preview.img.style.transform = `scale(${value / TOTAL_VALUE})`;
   }
-}
+};
 
 scaleSmaller.addEventListener(`click`, function () {
   const currentValue = scaleValue.value;
