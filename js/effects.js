@@ -2,7 +2,7 @@
 
 const DEFAULT_EFFECT_VALUE = 100;
 const effectsListNode = document.querySelector(`.effects__list`);
-const effectsParameters = {
+const EffectsParameters = {
   chrome: {
     filter: `grayscale`,
     min: 0,
@@ -42,7 +42,7 @@ let currentEffectName = `none`;
 
 const changeEffectValue = function (value) {
   if (currentEffectName !== `none`) {
-    const currentEffectParameters = effectsParameters[currentEffectName];
+    const currentEffectParameters = EffectsParameters[currentEffectName];
     const currentEffectValue = (currentEffectParameters.max - currentEffectParameters.min) / 100 * value + currentEffectParameters.min;
     const resultEffectFilter = `${currentEffectParameters.filter}(${currentEffectValue}${currentEffectParameters.measure})`;
 

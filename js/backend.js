@@ -1,12 +1,16 @@
 'use strict';
 
 const TIMEOUT_REQUEST = 100000;
-const url = {
+const SUCCESS_CASE = `2`;
+const ERROR_CASE = `4`;
+const LOAD_REQUEST = `GET`;
+const UPLOAD_REQUEST = `POST`;
+const Url = {
   LOAD: `https://21.javascript.pages.academy/kekstagram/data`,
   UPLOAD: `https://21.javascript.pages.academy/kekstagram`
 };
 
-const errorCodesObj = {
+const ErrorCodesObj = {
   400: `Bad Request (400).`,
   401: `Unauthorized (401).`,
   402: `Payment Required (402).`,
@@ -37,12 +41,12 @@ const createXhr = (onSuccess, onError) => {
     let errorMessage;
 
     switch (statusFirstNum) {
-      case `2`:
+      case SUCCESS_CASE:
         onSuccess(xhr.response);
         break;
 
-      case `4`:
-        errorMessage = errorCodesObj[xhr.status];
+      case ERROR_CASE:
+        errorMessage = ErrorCodesObj[xhr.status];
         break;
 
       default:
@@ -71,14 +75,14 @@ const createXhr = (onSuccess, onError) => {
 const loadData = (onSuccess, onError) => {
   const loadXhr = createXhr(onSuccess, onError);
 
-  loadXhr.open(`GET`, url.LOAD);
+  loadXhr.open(LOAD_REQUEST, Url.LOAD);
   loadXhr.send();
 };
 
 const uploadData = (data, onSuccess, onError) => {
   const uploadXhr = createXhr(onSuccess, onError);
 
-  uploadXhr.open(`POST`, url.UPLOAD);
+  uploadXhr.open(UPLOAD_REQUEST, Url.UPLOAD);
   uploadXhr.send(data);
 };
 

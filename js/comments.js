@@ -60,7 +60,7 @@ const getHtmlCommentsFragment = (comments) => {
 
 const addComments = () => {
   if (!allComments.increaseCount()) {
-    commentsCountNode.innerHTML = allComments.currentString;
+    commentsCountNode.value = allComments.currentString;
     const fragment = getHtmlCommentsFragment(allComments.currentSlice);
     commentsContainerNode.appendChild(fragment);
 

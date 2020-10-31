@@ -19,8 +19,7 @@ const getRandomNumber = function (min, max) {
 
 const getRandomElement = function (items) {
   const randomIndex = Math.floor(Math.random() * items.length);
-  const randomValue = items[randomIndex];
-  return randomValue;
+  return items[randomIndex];
 };
 
 const debounceDecorator = (func) => {

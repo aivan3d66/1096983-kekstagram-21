@@ -41,6 +41,8 @@ uploadFileInput.addEventListener(`change`, () => {
 uploadFileInput.addEventListener(`change`, () => {
   const imgFile = uploadFileInput.files[0];
   const imgReader = new FileReader();
+  textHashtags.value = ``;
+  comment.value = ``;
 
   imgReader.onloadend = () => {
     imgPreview.src = imgReader.result;
